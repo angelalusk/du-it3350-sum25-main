@@ -15,8 +15,7 @@
 			// Web resources may change/disappear. Substitute as needed.
 			// Hourly Temperature Forecast from OpenMeteo: https://open-meteo.com/
 			// discovered via https://publicapis.dev/category/weather
-			getResponse('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,wind_speed_10m', (response) => {
-			console.log(response);
+			getResponse('https://api.open-meteo.com/v1/forecast?latitude=39.06&longitude=-102.80&hourly=temperature_2m,wind_speed_10m&forecast_days=2', (response) => {
 				var hourlyForecast = response.hourly;
 				var times = hourlyForecast.time;
 				var temps = hourlyForecast.temperature_2m;
@@ -28,7 +27,12 @@
 						datasets: [{
 							label: 'Hourly Temperatures (in Celsius)',
 							data: temps,
-						}]		  
+						},
+						{
+							label: "Hourly Wind Speeds",
+							data: windSpeeds,
+						}
+					]
 					}
 				});
 			});
